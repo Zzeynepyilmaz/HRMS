@@ -3,9 +3,9 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
-import kodlamaio.hrms.core.utilities.adapters.MernisServiceAdapter;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -15,12 +15,11 @@ import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.User;
 
+@Service
 public class CandidateManager implements CandidateService{
 
 	private CandidateDao candidateDao;
 	private UserDao userDao;
-	private MernisServiceAdapter mernisServiceAdapter;
-
 	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao) {

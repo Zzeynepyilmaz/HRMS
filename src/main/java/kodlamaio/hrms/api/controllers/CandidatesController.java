@@ -32,7 +32,10 @@ public class CandidatesController {
 	}
 	
 	@PostMapping("/add")
-	public Result Add(@RequestBody Candidate candidate){
+	public Result add(@RequestBody Candidate candidate){
 		return candidateService.add(candidate);
 	} 
+	
+	
+	
 }
