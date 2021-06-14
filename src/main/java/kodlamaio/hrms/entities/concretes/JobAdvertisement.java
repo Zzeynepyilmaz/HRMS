@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,14 +49,14 @@ public class JobAdvertisement {
 	@Column(name="max_salary")
 	private int salaryScaleMax;
 	
-	@Column(name="number_of_open_positions")
+	@Column(name="number_of_open_position")
 	private int numberOfOpenPositions;
 	
 	@Column(name="deadline")
-	private Date deadline;
+	private LocalDate deadline;
 	
 	@Column(name="release_date")
-	private Date releaseDate;
+	private LocalDate releaseDate;
 	
 	@Column(name="is_active")
 	private boolean isActive;

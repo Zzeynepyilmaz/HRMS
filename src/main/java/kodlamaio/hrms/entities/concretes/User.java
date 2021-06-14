@@ -9,6 +9,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","verification_codes"})
 @Table(name="users")
 public class User {
 	
@@ -31,4 +34,7 @@ public class User {
 
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="is_mail_verify")
+	private boolean isMailVerify;
 }

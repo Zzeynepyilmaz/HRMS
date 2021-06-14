@@ -21,9 +21,9 @@ public class UserManager implements UserService{
 	}
 
 	@Override
-	public DataResult<List<User>> getAll() {
+	public DataResult<List<User>> findAll() {
 		return new SuccessDataResult<List<User>>(userDao.findAll(), 
-				"Kullanicilar basarili sekilde listelendi");
+				"Kullanicilar listelendi");
 	}
 
 	

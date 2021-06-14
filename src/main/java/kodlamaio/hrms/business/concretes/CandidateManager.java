@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Strings;
+
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -22,54 +24,77 @@ public class CandidateManager implements CandidateService{
 	private CandidateDao candidateDao;
 	private UserDao userDao;
 	
+	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao) {
+	public CandidateManager(CandidateDao candidateDao, UserDao userDao) {
 		super();
 		this.candidateDao = candidateDao;
+		this.userDao = userDao;
 	}
-	
+
+
 	@Override
-	public DataResult<List<Candidate>> getAll() {
-		return new SuccessDataResult<List<Candidate>>
-		(this.candidateDao.findAll(), "Is arayanlar listelendi");
+	public DataResult<List<Candidate>> findAllByEmail(String email) {
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAllByEmail(email), "Listelendi");
 	}
+
+
+	@Override
+	public DataResult<List<Candidate>> findAllByIdentificationNumber(String identificationNumber) {
+		return new SuccessDataResult<List<Candidate>>(
+				this.candidateDao.findAllByIdentificationNumber(identificationNumber), "Listelendi");
+	}
+
+
+	@Override
+	public DataResult<List<Candidate>> findAll() {
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(),
+				"Is arayanlar listelendi");
+	}
+
 
 	@Override
 	public Result add(Candidate candidate) {
+		if (Strings.isNullOrEmpty(candidate.getFirstName())) {
+			return new ErrorResult("Lütfen isminizi bos gecmeyiniz");
+		}
+
+		else if (Strings.isNullOrEmpty(candidate.getLastName())) {
+			return new ErrorResult("Lütfen soyisminizi bos gecmeyiniz");
+		}
+
+		else if (candidate.getBirthDate() == null) {
+			return new ErrorResult("Lütfen dogum yilini bos gecmeyiniz");
+		}
+
+		else if (candidate.getEmail() == null) {
+			return new ErrorResult("Lütfen email adresinizi bos gecmeyiniz");
+		}
+
+		else if (candidate.getPassword().length() <= 6) {
+			return new ErrorResult("Lütfen sifrenizi 6 karakterden az girmeyiniz");
+		}
+
 		
-		//if(candidate.getPassword().length() <= 6) {
-		//	return new ErrorResult("Sifre 6 karakterden uzun olmalidir.");
-		//}
-		//else if (getByIdentityNumber(candidate.getId()).getData() != null) {
-			//return new ErrorResult("Bu kimlik numarasi kayitli");
-			
-		//}
-		//else if (getByEmail(candidate.getEmail()).getData() != null) {
-			//return new ErrorResult("Bu email kayitli");
-		//}
-		//else {
-			//return new SuccessResult("Kullanıcı bilgileri hatalı");
-		//}
+		else {
+			return new ErrorResult("Kullanıcı bilgileri hatalı");
+		}
+	}
+
+
+	@Override
+	public Result delete(int id) {
+		this.candidateDao.deleteById(id);
+		return new SuccessResult("iş arayan silindi.");
+	}
+
+
+	@Override
+	public Result update(Candidate candidate) {
 		this.candidateDao.save(candidate);
-		return new SuccessDataResult("eklnedi");
+		return new SuccessResult("iş arayan  güncellendi.");
 	}
-
-	@Override
-	public DataResult<Candidate> getByIdentityNumber(int id) {
-
-        return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).get());
-    }
-
-	@Override
-	public DataResult<User> getByEmail(String email) {
-		return new SuccessDataResult<User>(this.userDao.findByEmail(email), "Listelendi");
-	}
-
-	@Override
-	public DataResult<Candidate> getByIdentityNumber(String identityNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 }

@@ -9,9 +9,16 @@ import kodlamaio.hrms.entities.concretes.User;
 
 public interface CandidateService {
 
-	DataResult<List<Candidate>> getAll();
+	DataResult<List<Candidate>> findAllByEmail(String email); // Tüm adaylarin mailleri
+
+	DataResult<List<Candidate>> findAllByIdentificationNumber(String identificationNumber); // Kimlik numarasina göre
+																							// tüm is basvurusu yapanlar
+
+	DataResult<List<Candidate>> findAll(); // Tüm isbasvurusu yapanlarin listesi
+
 	Result add(Candidate candidate);
-	DataResult<Candidate> getByIdentityNumber(String identityNumber);
-	DataResult<User> getByEmail(String email);
-	DataResult<Candidate> getByIdentityNumber(int id); 
+
+	Result delete(int id);
+
+	Result update(Candidate candidate);
 }

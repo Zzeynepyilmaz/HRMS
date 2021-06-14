@@ -27,8 +27,8 @@ public class CandidatesController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll(){
-		return candidateService.getAll();	
+	public DataResult<List<Candidate>> findAll(){
+		return candidateService.findAll();	
 	}
 	
 	@PostMapping("/add")
