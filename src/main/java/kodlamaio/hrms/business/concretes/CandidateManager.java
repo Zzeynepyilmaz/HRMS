@@ -10,6 +10,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
@@ -36,29 +37,38 @@ public class CandidateManager implements CandidateService{
 	@Override
 	public Result add(Candidate candidate) {
 		
-		if(candidate.getPassword().length() <= 6) {
-			return new ErrorResult("Sifre 6 karakterden uzun olmalidir.");
-		}
-		else if (getByIdentityNumber(candidate.getIdentityNumber()).getData() != null) {
-			return new ErrorResult("Bu kimlik numarasi kayitli");
+		//if(candidate.getPassword().length() <= 6) {
+		//	return new ErrorResult("Sifre 6 karakterden uzun olmalidir.");
+		//}
+		//else if (getByIdentityNumber(candidate.getId()).getData() != null) {
+			//return new ErrorResult("Bu kimlik numarasi kayitli");
 			
-		}
-		else if (getByEmail(candidate.getEmail()).getData() != null) {
-			return new ErrorResult("Bu email kayitli");
-		}
-		else {
-			return new ErrorResult("Kullanıcı bilgileri hatalı");
-		}
+		//}
+		//else if (getByEmail(candidate.getEmail()).getData() != null) {
+			//return new ErrorResult("Bu email kayitli");
+		//}
+		//else {
+			//return new SuccessResult("Kullanıcı bilgileri hatalı");
+		//}
+		this.candidateDao.save(candidate);
+		return new SuccessDataResult("eklnedi");
 	}
 
 	@Override
-	public DataResult<Candidate> getByIdentityNumber(String identityNumber) {
-		return new SuccessDataResult<Candidate>(this.candidateDao.findByIdentityNumber(identityNumber),"Listelendi");
-	}
+	public DataResult<Candidate> getByIdentityNumber(int id) {
+
+        return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).get());
+    }
 
 	@Override
 	public DataResult<User> getByEmail(String email) {
 		return new SuccessDataResult<User>(this.userDao.findByEmail(email), "Listelendi");
+	}
+
+	@Override
+	public DataResult<Candidate> getByIdentityNumber(String identityNumber) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
