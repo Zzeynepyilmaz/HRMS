@@ -9,26 +9,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="skills")
-@NoArgsConstructor
 @AllArgsConstructor
-public class Skill {
+@NoArgsConstructor
+@Table(name="cv_links")
+public class CvLink {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="cv_link_id")
+	private int cvLinkId;
+
+	@Column(name="link_name")
+	private String linkName;
 	
-	@Column(name="skill_name")
-	private String skillName;
-	
-	@ManyToOne
-	@JoinColumn(name="candidate_id")
+	@ManyToOne()
+	@JsonIgnore()
+	@JoinColumn(name = "user_id")
 	private Candidate candidate;
 }

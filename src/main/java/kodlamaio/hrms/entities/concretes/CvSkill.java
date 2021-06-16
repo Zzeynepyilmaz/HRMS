@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDate;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,39 +10,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="experiences")
-@NoArgsConstructor
 @AllArgsConstructor
-public class Experience {
+@NoArgsConstructor
+@Table(name="cv_skills")
+public class CvSkill {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="skill_id")
+	private int skillI,d;
+
 	
-	@Column(name="company_name")
-	private String companyName;
+	@Column(name="skill_name")
+	private String skillName;
 	
-	@Column(name="position")
-	private String position;
-	
-	@Column(name="start_date")
-	private LocalDate startDate;
-	
-	@Column(name="end_date")
-	private LocalDate endDate;
-	
-	@Column(name="is_active")
-	private boolean isActive;
-	
-	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore()
+	@JoinColumn(name = "user_id")
 	private Candidate candidate;
-	
 }
