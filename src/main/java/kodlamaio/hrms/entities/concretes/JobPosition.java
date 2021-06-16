@@ -20,7 +20,7 @@ public class JobPosition {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
-	@Column(name="id")
+	@Column(name="job_id")
 	private int id;
 	@Column(name="position")
 	private String position;

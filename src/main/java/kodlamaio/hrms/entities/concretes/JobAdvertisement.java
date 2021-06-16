@@ -1,6 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -24,41 +23,44 @@ import lombok.NoArgsConstructor;
 public class JobAdvertisement {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name="employer_id")
-	private Employer employer;
+	@Column(name = "job_details")
+	private String jobDetails;
 	
-	@ManyToOne()
-	@JoinColumn(name="job_position_id")
-	private JobPosition jobPosition;
+	@Column(name = "min_salary")
+	private double minSalary;
 	
-	@Column(name="job_description")
-	private String jobDescription;
+	@Column(name = "max_salary")
+	private double maxSalary;
 	
-	@ManyToOne()
-	@JoinColumn(name="city_id")
-	private City city;
-	
-	@Column(name="min_salary")
-	private int min_salary;
-	
-	@Column(name="max_salary")
-	private int salaryScaleMax;
-	
-	@Column(name="number_of_open_position")
+	@Column(name = "number_of_open_position")
 	private int numberOfOpenPositions;
 	
-	@Column(name="deadline")
-	private LocalDate deadline;
+	@Column(name = "last_apply_date")
+	private LocalDate lastApplyDate;
 	
-	@Column(name="release_date")
+	@Column(name = "is_active")
+	private boolean isActive;
+	
+	@Column(name = "release_date")
 	private LocalDate releaseDate;
 	
-	@Column(name="is_active")
-	private boolean isActive;
+
+	@ManyToOne()
+	@JoinColumn(name = "company_id")
+	private Employer employer;
+	
+	
+	@ManyToOne()
+	@JoinColumn(name = "job_id")
+	private JobPosition jobPosition;
+	
+	
+    @ManyToOne()
+	@JoinColumn(name = "city_id")
+	private City city;
 }
 

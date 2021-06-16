@@ -35,6 +35,5 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="is_mail_verify")
-	private boolean isMailVerify;
+	
 }

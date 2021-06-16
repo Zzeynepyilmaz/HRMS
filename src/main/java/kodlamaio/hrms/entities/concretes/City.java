@@ -22,7 +22,7 @@ public class City {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name="city_id")
 	private int id;
 	
 	@Column(name="city_name")

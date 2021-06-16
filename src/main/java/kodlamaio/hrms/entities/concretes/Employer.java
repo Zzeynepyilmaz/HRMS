@@ -2,18 +2,21 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@PrimaryKeyJoinColumn(name = "company_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","jobPostings"})
 @Table(name="employers")
 public class Employer extends User{
 	
@@ -26,7 +29,6 @@ public class Employer extends User{
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@Column(name="is_activated")
-	private boolean isActivated;
+	
 	
 }
