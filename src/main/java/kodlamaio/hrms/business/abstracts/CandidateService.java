@@ -11,8 +11,7 @@ public interface CandidateService {
 
 	DataResult<List<Candidate>> findAllByEmail(String email); // Tüm adaylarin mailleri
 
-	DataResult<List<Candidate>> findAllByIdentificationNumber(String identificationNumber); // Kimlik numarasina göre
-																							// tüm is basvurusu yapanlar
+	DataResult<List<Candidate>> findAllByIdentityNumber(String identityNumber); // Kimlik numarasina göre tüm is basvurusu yapanlar
 
 	DataResult<List<Candidate>> findAll(); // Tüm isbasvurusu yapanlarin listesi
 
