@@ -8,6 +8,6 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer>{
 
-	List<JobAdvertisement> getByEmployerId(int employerId);
 	List<JobAdvertisement> getByIsActive(boolean isActive);
+	
 }

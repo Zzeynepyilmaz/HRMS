@@ -28,19 +28,19 @@ public class Candidate extends User{
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "nationalty_id")
-	private String nationaltyId;
+	@Column(name = "identity_number")
+	private String identityNumber;
 
 	@Column(name = "birth_year")
 	private String birthYear;
 
-	public Candidate(int id, String email, String password, String firstName, String lastName, String nationaltyId,
+	public Candidate(int id, String email, String password, String firstName, String lastName, String identityNumber,
 			String birthYear) {
 
 		super(id, email, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.nationaltyId = nationaltyId;
+		this.identityNumber = identityNumber;
 		this.birthYear = birthYear;
 
 	}
