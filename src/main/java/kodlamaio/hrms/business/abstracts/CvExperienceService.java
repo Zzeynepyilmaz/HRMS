@@ -10,5 +10,5 @@ public interface CvExperienceService {
 
 	Result add(CvExperience cvExperience);
 	DataResult<List<CvExperience>> getAllByCandidateId(int id);
-	DataResult<List<CvExperience>> getByCandidateIdOrderByBeginingDate(int id);
+	DataResult<List<CvExperience>> getAllByCandidateIdOrderByEndAtDesc(int id);
 }

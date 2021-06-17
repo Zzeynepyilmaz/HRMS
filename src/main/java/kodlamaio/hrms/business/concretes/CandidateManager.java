@@ -35,16 +35,8 @@ public class CandidateManager implements CandidateService{
 
 	@Override
 	public DataResult<List<Candidate>> findAllByEmail(String email) {
-		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAllByEmail(email), "Listelendi");
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findByEmail(email), "Listelendi");
 	}
-
-
-	@Override
-	public DataResult<List<Candidate>> findAllByIdentificationNumber(String identificationNumber) {
-		return new SuccessDataResult<List<Candidate>>(
-				this.candidateDao.findAllByIdentificationNumber(identificationNumber), "Listelendi");
-	}
-
 
 	@Override
 	public DataResult<List<Candidate>> findAll() {
@@ -63,7 +55,7 @@ public class CandidateManager implements CandidateService{
 			return new ErrorResult("Lütfen soyisminizi bos gecmeyiniz");
 		}
 
-		else if (candidate.getBirthDate() == null) {
+		else if (candidate.getBirthYear() == null) {
 			return new ErrorResult("Lütfen dogum yilini bos gecmeyiniz");
 		}
 
@@ -77,7 +69,9 @@ public class CandidateManager implements CandidateService{
 
 		
 		else {
-			return new ErrorResult("Kullanıcı bilgileri hatalı");
+			this.candidateDao.save(candidate);
+			return new SuccessResult("İş arayan eklendi");
+			
 		}
 	}
 
@@ -93,6 +87,13 @@ public class CandidateManager implements CandidateService{
 	public Result update(Candidate candidate) {
 		this.candidateDao.save(candidate);
 		return new SuccessResult("iş arayan  güncellendi.");
+	}
+
+
+	@Override
+	public DataResult<List<Candidate>> findAllByIdentityNumber(String identityNumber) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
