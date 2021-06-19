@@ -26,7 +26,7 @@ public class CvSkill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="skill_id")
-	private int skillI,d;
+	private int skillId;
 
 	
 	@Column(name="skill_name")

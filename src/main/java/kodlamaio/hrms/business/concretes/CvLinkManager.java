@@ -2,6 +2,8 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import kodlamaio.hrms.business.abstracts.CvLinkService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -10,6 +12,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CvLinkDao;
 import kodlamaio.hrms.entities.concretes.CvLink;
 
+@Service
 public class CvLinkManager implements CvLinkService{
 
 	private CvLinkDao cvLinkDao;

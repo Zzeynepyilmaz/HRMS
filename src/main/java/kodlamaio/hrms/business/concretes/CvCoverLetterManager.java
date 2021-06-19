@@ -2,6 +2,8 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import kodlamaio.hrms.business.abstracts.CvCoverLetterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -10,6 +12,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CvCoverLetterDao;
 import kodlamaio.hrms.entities.concretes.CvCoverLetter;
 
+@Service
 public class CvCoverLetterManager implements CvCoverLetterService{
 
 	private CvCoverLetterDao cvCoverLetterDao;

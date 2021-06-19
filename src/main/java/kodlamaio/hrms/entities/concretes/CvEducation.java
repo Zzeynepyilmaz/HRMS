@@ -27,7 +27,7 @@ public class CvEducation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cv_educations_id")
-	private int cvEducationId;
+	private int id;
 	
 	@Column(name="school_name")
 	private String schoolName;

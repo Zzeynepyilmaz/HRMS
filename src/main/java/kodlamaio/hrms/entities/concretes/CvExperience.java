@@ -28,11 +28,11 @@ public class CvExperience {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cv_experience_id")
-	private int cvExperienceId;
+	private int id;
 	
 	
-	@Column(name="other_company")
-	private String otherCompany;
+	@Column(name="company_name")
+	private String companyName;
 	
 	@Column(name="begining_date")
 	private LocalDate beginingDate;

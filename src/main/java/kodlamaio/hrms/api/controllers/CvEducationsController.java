@@ -47,6 +47,6 @@ public class CvEducationsController {
 	
 	@GetMapping("/getAllByJCandidateIdOrderByEndAtDesc")
 	public DataResult<List<CvEducation>> getAllByCandidateIdOrderByEndAtDesc(@RequestParam int id){
-		return this.cvEducationService.getAllByCandidateIdOrderByEndAtDesc(id);
+		return this.cvEducationService.getAllByCandidateIdOrderByGraduationDateDesc(id);
 	}
 }

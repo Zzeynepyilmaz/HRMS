@@ -11,7 +11,7 @@ public interface CvEducationService {
 	Result add(CvEducation cvEducation);
 	DataResult<List<CvEducation>> getAll();
 	DataResult<List<CvEducation>> getAllByCandidateId(int id);
-	DataResult<List<CvEducation>> getAllByCandidateIdOrderByEndAtDesc(int id);
+	DataResult<List<CvEducation>> getAllByCandidateIdOrderByGraduationDateDesc(int id);
 
 
 }
