@@ -40,4 +40,5 @@ public class CvLanguage {
 	@JoinColumn(name = "user_id")
 	@JsonIgnore()
 	private Candidate candidate;
+	
 }

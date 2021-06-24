@@ -17,6 +17,7 @@ import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.dtos.CandidateCvDto;
 
 @Service
 public class CandidateManager implements CandidateService{
@@ -94,6 +95,19 @@ public class CandidateManager implements CandidateService{
 	public DataResult<List<Candidate>> findAllByIdentityNumber(String identityNumber) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public DataResult<CandidateCvDto> getCandidateCvById(int id) {
+		Candidate candidate = this.candidateDao.getById(id);
+		CandidateCvDto cv = new CandidateCvDto();
+		cv.experiences = candidate.getCvExperience();
+		cv.languages = candidate.getCvLanguage();
+		cv.educations = candidate.getCvEducation();
+		cv.skills = candidate.getCvSkill();
+		cv.coverLetters = candidate.getCvCoverLetter();
+		return new SuccessDataResult<CandidateCvDto>(cv);
 	}
 	
 	
