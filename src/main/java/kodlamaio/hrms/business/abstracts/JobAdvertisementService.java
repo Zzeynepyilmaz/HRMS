@@ -10,5 +10,5 @@ public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisement>> getAll();
 	Result add(JobAdvertisement jobAdvertisement);
-	
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id);
 }

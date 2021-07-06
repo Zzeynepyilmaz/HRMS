@@ -32,5 +32,10 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Is ilani eklendi");
 	}
+	
+	@Override
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
+	}
 
 }
